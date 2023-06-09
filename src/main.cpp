@@ -7,7 +7,7 @@
 
 /* include libs*/
 
-#include "database.h"
+#include "../lib/database.h"
 
 
 
@@ -53,6 +53,7 @@ void CSession(Session& session){
 
        std::cout<<"[main] exit"<<'\n';
        session.state = false;
+       exit(-1);
 
 
      }
@@ -78,6 +79,7 @@ void load_wifi(std::vector<Wifi>& w1){ //Optional with a map with key relations
  } 
  
 
+
 int main(){
 	
 	
@@ -97,19 +99,40 @@ int main(){
     time();
 
     
-    
-    
-    
-    add_user("user1","password1","user1@mail.com","root1");
-    add_user("user2","password2","user2@mail.com","root2");
-    add_user("user3","password3","user3@mail.com","root3");
-    add_user("user4","password4","user4@mail.com","root4");
-    add_user("user5","password5","user5@mail.com","root5");
+    int option;
 
+    std::cout<<"[main] options:"<<'\n';
+    std::cout<<"[main] manual database:1"<<'\n';
+    std::cout<<"[main] defect database:2"<<'\n';
 
-    
+    std::cin>>option;
+
+    switch (option){
+
+        case 1: 
+        add_user_line();
+        printTable(TableRoot);
+		tableMemory(TableRoot);
+		
+         break;
+        case 2: defect_database();
+        printTable(TableRoot);
+		tableMemory(TableRoot);
+		break;
+        case 3: std::cout<<"[main] option desaible:";break;
+        case 4: std::cout<<"[main] option desaible:";break;
+        case 5: std::cout<<"[main] option desaible:";break;
+        default:
+        
+            std::cout<<"[main] doesn't this option:"<<'\n';
+
+         break;
+
+     }
+     
+     /*load to switch*/
 	
-    printTable(TableRoot);
+    
     system("pause");
 
     
